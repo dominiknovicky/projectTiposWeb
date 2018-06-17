@@ -14,57 +14,53 @@ class Register extends React.Component {
     };
 
     handleLoginValue = e => {
-        this.setState({ login: e.target.value });
-        console.log(e.target.value);
+        this.setState({ login: e.target.value }, ()=>{
+            console.log(this.state.login);
+        });
     };
-    
+
     handlePasswordValue = e => {
         this.setState({ password: e.target.value });
-        console.log(e.target.value);
     };
-    
+
     handleEmailValue = e => {
         this.setState({ email: e.target.value });
-        console.log(e.target.value);
     };
-    
+
     handleFirstNameValue = e => {
         this.setState({ firstName: e.target.value });
-        console.log(e.target.value);
     };
-    
+
     handleLastNameValue = e => {
         this.setState({ lastName: e.target.value });
-        console.log(e.target.value);
     };
 
-    verifyCallback = response => {
-        if (response.length > 0) {
-            this.setState({ allowSend: true });
-        }
-    };
-
-    signIn = async event => {
+    register = async event => {
         event.preventDefault();
         const form = {
-            login: this.state.username,
-            password: this.state.password
+            login: this.state.login,
+            password: this.state.password,
+            firstname: this.state.firstName,
+            lastname: this.state.lastName,
+            email: this.state.email
           };
+
+          console.log(form);
 
         try {
           const response = await axios({
             method: "post",
-            url: "/auth/login",
+            url: "/auth/reg",
             data: form,
             config: { headers: { "Content-Type": "aplication/json" } }
           });
-          localStorage.setItem('user', JSON.stringify(response.data));
 
-          this.props.history.push("/");
+          alert("You have successfully registered.");
+          this.props.history.push("/login");
 
-        console.log(response.data);
         } catch (err) {
-          console.log(err);
+            alert("Something went wrong. Try again.");
+            window.location.reload();
         }
       };
 
@@ -73,7 +69,7 @@ class Register extends React.Component {
     	return (
 			<Wrapper>
                 <InputWrapper>
-                    <form onSubmit={this.signIn}>
+                    <form onSubmit={this.register}>
                         <StyledInput
                             placeholder="First Name"
                             type='text' 

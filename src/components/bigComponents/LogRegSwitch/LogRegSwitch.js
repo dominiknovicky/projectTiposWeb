@@ -4,7 +4,6 @@ import { StyledWrapper, StyledLink } from "./styles";
 const LogRegSwitch =(props) => (
 
         <StyledWrapper>
-
             <StyledLink to="/login" 
                 activeStyle={{
                     background:"#D47A0F",

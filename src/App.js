@@ -1,8 +1,10 @@
 import { ThemeProvider } from "styled-components";
 import React from "react";
-  import { Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import theme from "./styles/themes/default";
 import LoginRegistration from "./containers/LogRegPage";
+import Homepage from './containers/Homepage/index';
+import Userprofile from './containers/UserprofilePage/index';
 
 const App = () => (
   <div>
@@ -12,7 +14,7 @@ const App = () => (
           <Route
             exact
             path="/"
-            component={LoginRegistration} />
+            component={Homepage} />
           />
           <Route
             path="/login"
@@ -21,6 +23,10 @@ const App = () => (
           <Route
             path="/registration"
             component={LoginRegistration} />
+          />
+          <Route
+            path="/user"
+            component={Userprofile} />
           />
         </Switch>
       </div>
