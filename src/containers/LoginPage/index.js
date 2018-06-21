@@ -44,7 +44,8 @@ class Login extends React.Component {
 
         console.log(response.data);
         } catch (err) {
-          console.log(err);
+            alert("Something went wrong. Try again.");
+            window.location.reload();
         }
       };
 
